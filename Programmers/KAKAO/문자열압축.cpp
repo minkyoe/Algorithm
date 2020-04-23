@@ -33,7 +33,7 @@ int solution(string s) {
                 tmp = target;
                 sameCnt = 1;
             }
-            if (j + i > strLen) {
+            if (j + i > strLen) { // 여기서 비교안해주면 마지막 문자열 못붙임!!
                 shortenStr += tmp;
             }
         }
@@ -61,6 +61,4 @@ int main(void) {
     cin >> str;
 
     solution(str);
-
-    // cout << "answer:: " << solution(str) << endl;
 }

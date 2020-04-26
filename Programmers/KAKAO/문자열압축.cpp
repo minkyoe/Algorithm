@@ -61,4 +61,5 @@ int main(void) {
     cin >> str;
 
     solution(str);
+
 }

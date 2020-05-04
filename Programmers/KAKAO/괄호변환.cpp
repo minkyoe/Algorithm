@@ -37,10 +37,9 @@ string seperate(string p) {
     string u = "";
     string v = "";
 
-
-    for (int i=0; i<p.size(); i++) {
-        string c = p.substr(i, 1);
-        if (c == "(")  lCount ++;
+    // u, v로 분리
+    for (char c : p) {
+        if (c == '(')  lCount ++;
         else rCount ++;
 
         if (lCount == rCount) {
@@ -58,11 +57,10 @@ string seperate(string p) {
         string tmp = "(" + seperate(v) + ")";
         if (u.size() <= 2) u = ""; // u의 길이가 2이하일때 고려
         else {
-            u = u.substr(1, u.size()-2); // u의 첫번째와 마지막 문자 자름
+            u = u.substr(1, u.size()-2); // u의 첫번째와 마지막 문자 지움
             string result = "";
-            for (int i=0; i<u.size(); i++) { // u의 괄호 방향 바꾸기
-                string tmp = u.substr(i, 1);
-                if (tmp == "(") result += ")";
+            for (char c : u) { // u의 괄호 방향 바꾸기
+                if (c == '(') result += ")";
                 else result += "(";
             }
             u = result;
@@ -79,4 +77,8 @@ string solution(string p) {
     else answer = seperate(p);
  
     return answer;
+}
+
+int main(void) {
+    cout << solution("(())") << endl;
 }

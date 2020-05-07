@@ -2,52 +2,30 @@
 #include <vector>
 #include <iostream>
 
-// 미완!!!!!!!!!!!!!!!!
-using namespace std;
-int answer = 0;
-int visited[50];
-void dfs(string begin, string target, vector<string> words, int index, int count) {
-    int sameCount = 0;
-    answer ++;
-    cout << "index:: " << index << endl;
-    cout << "네,,?" << endl;
-    if (count == words.size()) {
-        if (begin == target) {
-            cout << "begin == target" << endl;
-            return;
-        }
 
-        else{
-            answer = 0;
-            cout << "this is ELSE!!" << endl;
-        }
-    }
+// 각 단어의 길이는 3 이상 10 이하이며 모든 단어의 길이는 같습니다. ==> 여기서 sameCount == 2 이렇게 하니까 계속 틀림.. 바보냐고.... 같지않은숫자를 세줘야지!!!
+using namespace std;
+int answer = 50;
+int visited[50] = {0,};
+void dfs(string begin, string target, vector<string> words, int index, int count) {
 
     for (int j = 0; j < words.size(); j++) {
-        string temp = words[j];
-        for (int i = 0; i < begin.size(); i++) {
-            int idx = temp.find(begin.substr(i,1));
-            if (idx>=0) {
-                // words[j] = words[j].substr(0,idx) + words[j].substr(idx+1);
-                temp = temp.substr(0,idx) + temp.substr(idx+1);
-                sameCount ++;
-            } else continue;
+        int diffCnt = 0;
+
+        for (int i = 0; i < words[i].size(); i++) {
+            if (begin[i] != words[j][i]) diffCnt ++;
         }
-        if (sameCount == 2 && !visited[j]) {
-            dfs(words[j], target, words, j, count+1);
+
+        if (diffCnt == 1 && !visited[j]) {
+            if (target == words[j] && answer > count + 1) {
+                answer = count + 1;
+                return;
+            }
             visited[j] = 1;
-            cout << "dfs:: " << words[j] << endl;
+            dfs(words[j], target, words, j, count+1);
+            visited[j] = 0;
         }
 
-        // else {
-        //     if (j == words.size()-1) return;
-        // }
-
-        // if (sameCount == 2 && !visited[j]) {
-        //     dfs(words[j], target, words, j, count+1);
-        //     visited[j] = 1;
-        //     cout << "dfs:: " << words[j] << endl;
-        // }
     }
 
 }
@@ -55,22 +33,8 @@ void dfs(string begin, string target, vector<string> words, int index, int count
 
 int solution(string begin, string target, vector<string> words)
 {
-    // int sameCount = 0;
-
-    // for (int j = 0; j < words.size(); j++) {
-    //     for (int i = 0; i < begin.size(); i++) {
-    //         int idx = words[j].find(begin.substr(i,1));
-    //         if (idx>=0) {
-    //             words[j] = words[j].substr(0,idx) + words[j].substr(idx+1);
-    //             sameCount ++;
-    //         } else continue;
-    //     }
-    //     if (sameCount == 2) {
-
-    //     }
-    // }
-
     dfs(begin, target, words, 0, 0);
+    if (answer == 50) answer = 0;
 
     cout << "answer:: " << answer;
     return answer;
@@ -79,7 +43,10 @@ int solution(string begin, string target, vector<string> words)
 int main(void)
 {
 
-    solution("hit", "cog", {"hot", "dot", "dog", "lot", "log", "cog"});
+    // solution("hit", "cog", {"hot", "dot", "dog", "lot", "log", "cog"});
+    solution("hot","lot",{"hot", "dot", "dog", "lot", "log"});
     // cout << "answer:: " << real_answer;
     return 0;
 }
+
+

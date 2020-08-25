@@ -43,6 +43,7 @@ public class Main_Boj_1043_거짓말 {
 			int tmp = Integer.parseInt(st.nextToken());
 			mustTruth[tmp] = true; 
 			mustTruthPP.add(tmp);
+			mustCnt++;
 		}
 		
 		for (int i = 0; i < M; i++) { // 파티 수 만큼
@@ -86,7 +87,7 @@ public class Main_Boj_1043_거짓말 {
 		if (mustCnt == 0) {
 			System.out.println(M);
 		} else {
-			// partyInfo 돌면서 한명이라도 mustTruth가 false라면 ans--
+			// partyInfo 돌면서 한명이라도 mustTruth가 false라면 ans 감소
 			for (int i = 0; i < M; i++) {
 				for (int j = 0; j < partyInfo[i].size(); j++) {
 					int idx = partyInfo[i].get(j);
@@ -96,17 +97,12 @@ public class Main_Boj_1043_거짓말 {
 					}
 				}
 			}
-			
 			System.out.println(ans);
 		}
 		
-		
-
 	} // end of main
 
 	private static void checkMustTruth(int curIdx) {
-		if (list[curIdx].size() == 0) mustCnt++;
-		
 		for (int idx : list[curIdx]) {
 			if (visited[idx]) continue;
 			visited[idx] = true;

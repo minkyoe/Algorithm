@@ -36,13 +36,7 @@ public class Solution_2019_오픈채팅방 {
 
 				if ("Enter".equals(mode)) {
 					cnt++;
-					if (hm.containsKey(id)) { // 원래 있던 사람이라면
-						if (!name.equals(hm.get(id))) { // 닉네임 변경했다면
-							hm.replace(id, name); // hashmap에 변경작업
-						}
-					} else {
-						hm.put(id, name);
-					}
+					hm.put(id, name);
 				} else if ("Change".equals(mode)) {
 					hm.replace(id, name);
 				}

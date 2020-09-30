@@ -19,7 +19,6 @@ public class Main_17779_게리맨더링2 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(bf.readLine());
-		map = new int[N + 1][N + 1];
 		mapCnt = new int[N+1][N+1];
 		totalSum = 0;
 		result = Integer.MAX_VALUE;
@@ -28,8 +27,7 @@ public class Main_17779_게리맨더링2 {
 		for (int i = 1; i <= N; i++) {
 			st = new StringTokenizer(bf.readLine(), " ");
 			for (int j = 1; j <= N; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-				mapCnt[i][j] = map[i][j];
+				mapCnt[i][j] = Integer.parseInt(st.nextToken());
 				totalSum += mapCnt[i][j];
 			}
 		}

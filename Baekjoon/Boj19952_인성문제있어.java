@@ -65,11 +65,12 @@ public class Main_19952_인성문제있어 {
 			int ty = tmp[1];
 			int tp = tmp[2];
 			
-			if (tp == 0) {
-				break;
-			}
 			if (tx == X2 && ty == Y2) {
 				flag = true;
+				break;
+			}
+			
+			if (tp <= 0) {
 				break;
 			}
 			

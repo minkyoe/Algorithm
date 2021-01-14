@@ -14,7 +14,7 @@ public class Main_14726_신용카드판별 {
 			
 			for (int j = s.length()-1; j >= 0; j--) {
 				int n = s.charAt(j) - '0';
-				if ((j-s.length()+2) % 2 == 0) { // 짝수라면
+				if (j % 2 == 0) { // 짝수라면
 					n *= 2;
 					int sum = 0;
 					if (n >= 10) {
@@ -24,7 +24,7 @@ public class Main_14726_신용카드판별 {
 						}
 						n = sum;
 					} 
-					if (j > 0) s = s.substring(0, j) + String.valueOf(sum) + s.substring(j+1);
+					if (j > 0) s = s.substring(0, j) + String.valueOf(n) + s.substring(j+1);
 					else s = String.valueOf(n) + s.substring(1);
 				}
 			}

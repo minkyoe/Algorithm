@@ -67,12 +67,8 @@ public class Main_1800_인터넷설치 {
 			}
 		}
 		
-		if (ans == Integer.MIN_VALUE) {
-			System.out.println("-1");
-		}
-		else {
-			System.out.println(ans);
-		}
+		if (ans == Integer.MIN_VALUE) System.out.println("-1");
+		else System.out.println(ans);
 		
 	} // end of main
 

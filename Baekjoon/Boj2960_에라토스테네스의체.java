@@ -33,7 +33,6 @@ ex:		for (int i = 2; i <= N; i++) {
 		}
 		
 		System.out.println(deleteNum);
-
 	}
 
 }

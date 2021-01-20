@@ -15,20 +15,20 @@ public class Main_1110_더하기사이클 {
 		
 		while (true) {
 			if (s.length() < 2) {
-				s += "0";
+				s = "0" + s;
 			}
 			
 			String left = s.substring(1);
 			String right = String.valueOf(Integer.parseInt(s.substring(0,1)) + Integer.parseInt(s.substring(1)));
 			
-			if (Integer.parseInt(right) > 10) {
+			if (right.length() >= 2) {
 				right = right.substring(1);
 			}
 			
-			s = left + right;
+			if (left.equals("0")) s = right;
+			else s = left + right;
 			n = Integer.parseInt(s);
 			ans++;
-//			System.out.println(left + " / " + right + " = " + n);
 			if (n == goal) break;
 		}
 		

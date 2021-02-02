@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Boj2644_ÃÌ¼ö°è»ê_2 {
+public class Boj2644_ì´Œìˆ˜ê³„ì‚°_2 {
 
 	private static int N;
 	private static int M;

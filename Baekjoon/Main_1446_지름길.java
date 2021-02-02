@@ -1,4 +1,3 @@
-package Baekjoon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,10 +76,6 @@ public class Main_1446_지름길 {
 					} else {
 						dist[next] = nowDist + nextDist;
 					}
-					pq.add(new Road(next, dist[next]));
-				}
-				else if (nowDist + (next - now) < dist[next]) {
-					dist[next] = nowDist + (next - now);
 					pq.add(new Road(next, dist[next]));
 				}
 			}

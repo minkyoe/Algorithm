@@ -1,4 +1,4 @@
-package Programmers;
+package 이분탐색;
 
 import java.util.Arrays;
 

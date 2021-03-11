@@ -1,4 +1,4 @@
-package Programmers;
+package DFS_BFS;
 import java.util.*;
 
 class Solution {

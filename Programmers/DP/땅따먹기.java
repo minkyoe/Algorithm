@@ -1,4 +1,4 @@
-package 코딩테스트_연습;
+package DP;
 
 import java.util.*;
 

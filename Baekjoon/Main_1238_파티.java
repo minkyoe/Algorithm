@@ -13,8 +13,9 @@ public class Main_1238_파티 {
 	private static int X;
 	private static final int INF = Integer.MAX_VALUE;
 	private static ArrayList<Loc>[] list;
-	private static int[] arr;
+	private static int[] go;
 	private static int ans;
+	private static int[] back;
 	
 	static class Loc implements Comparable<Loc>{
 		int v;
@@ -43,8 +44,10 @@ public class Main_1238_파티 {
 			list[i] = new ArrayList<Loc>();
 		}
 		
-		arr = new int[N+1];
-		Arrays.fill(arr, INF);
+		go = new int[N+1];
+		back = new int[N+1];
+		Arrays.fill(go, INF);
+		Arrays.fill(back, INF);
 		
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(bf.readLine(), " ");
@@ -54,24 +57,24 @@ public class Main_1238_파티 {
 			list[a].add(new Loc(b, w));
 		}
 		
+		dijkstraBack(X);
+		
 		for (int i = 1; i <= N; i++) {
-			int sum = 0;
+			if (i == X) continue;
+			int sum = back[i];
 			dijkstra(i);
-			sum += arr[X];
-			Arrays.fill(arr, INF);
-			dijkstra(X);
-			sum += arr[i];
-			System.out.println("sum  " + sum);
+			sum += go[X];
 			ans = Math.max(ans, sum);
+			Arrays.fill(go, INF);
 		}
 		
 		System.out.println(ans);
 	} // end of main
-
-	private static void dijkstra(int i) {
+	
+	private static void dijkstraBack(int i) {
 		PriorityQueue<Loc> pq = new PriorityQueue<>();
 		pq.offer(new Loc(i, 0));
-		arr[i] = 0;
+		go[i] = 0;
 		
 		while (!pq.isEmpty()) {
 			Loc tmp = pq.poll();
@@ -81,9 +84,30 @@ public class Main_1238_파티 {
 			for (int j = 0; j < list[now].size(); j++) {
 				int next = list[now].get(j).v;
 				int nextDist = list[now].get(j).w;
-				if (nowDist + nextDist < arr[next]) {
-					arr[next] = nowDist + nextDist;
-					pq.offer(new Loc(next, arr[next]));
+				if (nowDist + nextDist < back[next]) {
+					back[next] = nowDist + nextDist;
+					pq.offer(new Loc(next, back[next]));
+				}
+			}
+		}
+	}
+	
+	private static void dijkstra(int i) {
+		PriorityQueue<Loc> pq = new PriorityQueue<>();
+		pq.offer(new Loc(i, 0));
+		go[i] = 0;
+		
+		while (!pq.isEmpty()) {
+			Loc tmp = pq.poll();
+			int now = tmp.v;
+			int nowDist = tmp.w;
+			
+			for (int j = 0; j < list[now].size(); j++) {
+				int next = list[now].get(j).v;
+				int nextDist = list[now].get(j).w;
+				if (nowDist + nextDist < go[next]) {
+					go[next] = nowDist + nextDist;
+					pq.offer(new Loc(next, go[next]));
 				}
 			}
 		}

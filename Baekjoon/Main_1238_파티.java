@@ -57,24 +57,22 @@ public class Main_1238_파티 {
 			list[a].add(new Loc(b, w));
 		}
 		
-		dijkstraBack(X);
+		dijkstra(X, back);
 		
 		for (int i = 1; i <= N; i++) {
 			if (i == X) continue;
-			int sum = back[i];
-			dijkstra(i);
-			sum += go[X];
-			ans = Math.max(ans, sum);
+			dijkstra(i, go);
+			ans = Math.max(ans, go[X] + back[i]);
 			Arrays.fill(go, INF);
 		}
 		
 		System.out.println(ans);
 	} // end of main
 	
-	private static void dijkstraBack(int i) {
+	private static void dijkstra(int i, int[] arr) {
 		PriorityQueue<Loc> pq = new PriorityQueue<>();
 		pq.offer(new Loc(i, 0));
-		go[i] = 0;
+		arr[i] = 0;
 		
 		while (!pq.isEmpty()) {
 			Loc tmp = pq.poll();
@@ -84,33 +82,12 @@ public class Main_1238_파티 {
 			for (int j = 0; j < list[now].size(); j++) {
 				int next = list[now].get(j).v;
 				int nextDist = list[now].get(j).w;
-				if (nowDist + nextDist < back[next]) {
-					back[next] = nowDist + nextDist;
-					pq.offer(new Loc(next, back[next]));
+				if (nowDist + nextDist < arr[next]) {
+					arr[next] = nowDist + nextDist;
+					pq.offer(new Loc(next, arr[next]));
 				}
 			}
 		}
 	}
 	
-	private static void dijkstra(int i) {
-		PriorityQueue<Loc> pq = new PriorityQueue<>();
-		pq.offer(new Loc(i, 0));
-		go[i] = 0;
-		
-		while (!pq.isEmpty()) {
-			Loc tmp = pq.poll();
-			int now = tmp.v;
-			int nowDist = tmp.w;
-			
-			for (int j = 0; j < list[now].size(); j++) {
-				int next = list[now].get(j).v;
-				int nextDist = list[now].get(j).w;
-				if (nowDist + nextDist < go[next]) {
-					go[next] = nowDist + nextDist;
-					pq.offer(new Loc(next, go[next]));
-				}
-			}
-		}
-	}
-
 } // end of class

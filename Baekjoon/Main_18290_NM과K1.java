@@ -10,7 +10,6 @@ public class Main_18290_NM과K1 {
 	private static Pos[] selected;
 	static int[] dr = {-1, 1, 0, 0};
 	static int[] dc = {0, 0, -1, 1};
-	private static boolean[][] visited;
 	
 	static class Pos {
 		int r;
@@ -28,7 +27,6 @@ public class Main_18290_NM과K1 {
 		M = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 		map = new int[N][M];
-		visited = new boolean[N][M];
 		
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(bf.readLine(), " ");
@@ -47,18 +45,23 @@ public class Main_18290_NM과K1 {
 	private static void comb(int y, int x, int k) {
 		if (y > N || x > M) return;
 		if (k == K) {
+			boolean flag = true;
 			int sum = 0;
-			for (int i = 0; i < K; i++) {
+			
+ex:			for (int i = 0; i < K; i++) {
 				Pos now = selected[i];
 				sum += map[now.r][now.c];
 				for (int j = 0; j < K; j++) {
 					if (i == j) continue;
 					Pos other = selected[j];
 					if ((Math.abs(now.r - other.r) == 1 && Math.abs(now.c - other.c) == 0)
-						|| (Math.abs(now.r - other.r) == 0 && Math.abs(now.c - other.c) == 1)) return;
+						|| (Math.abs(now.r - other.r) == 0 && Math.abs(now.c - other.c) == 1)) {
+						flag = false;
+						break ex;
+					}
 				}
 			}
-			ans = Math.max(ans, sum);
+			if (flag) ans = Math.max(ans, sum);
 			return;
 		}
 		
@@ -67,6 +70,11 @@ public class Main_18290_NM과K1 {
 				selected[k] = new Pos(i, j);
 				if (j == M-1) comb(i+1, 0, k+1);
 				else comb(i, j+1, k+1);
+				
+				if (j == M-1) {
+					x = 0;
+					break;
+				}
 			}
 		}
 		

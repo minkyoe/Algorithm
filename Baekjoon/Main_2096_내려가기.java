@@ -24,6 +24,7 @@ public class Main_2096_내려가기 {
 		if (N == 1) {
 			sb.append(Math.max(Math.max(max[0][0], max[0][1]), max[0][2]) + " ");
 			sb.append(Math.min(Math.min(min[0][0], min[0][1]), min[0][2]));
+			System.out.println(sb);
 		} else {
 			for (int i = 1; i < N; i++) { // 행 
 				s = bf.readLine();
@@ -49,13 +50,14 @@ public class Main_2096_내려가기 {
 				max[0][1] = max[1][1];
 				max[0][2] = max[1][2];
 			}
+			
+			sb.append(Math.max(Math.max(max[0][0], max[0][1]), max[0][2]));
+			sb.append(" ");
+			sb.append(Math.min(Math.min(min[0][0], min[0][1]), min[0][2]));
+			
+			System.out.println(sb);
 		}
 
-		sb.append(Math.max(Math.max(max[0][0], max[0][1]), max[0][2]));
-		sb.append(" ");
-		sb.append(Math.min(Math.min(min[0][0], min[0][1]), min[0][2]));
-		
-		System.out.println(sb);
 	} // end of main
 
 } // end of class

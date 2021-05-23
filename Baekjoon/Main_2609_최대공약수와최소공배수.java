@@ -6,7 +6,6 @@ import java.util.StringTokenizer;
 public class Main_2609_최대공약수와최소공배수 {
 
 	private static int a, b;
-
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(bf.readLine(), " ");

@@ -38,13 +38,13 @@ public class Main_14888_연산자끼워넣기 {
 			}
 		}
 		
-		go(0, 0);
+		go(0);
 		
 		System.out.println(max);
 		System.out.println(min);
 	} // end of main
 
-	private static void go(int idx, int cnt) {
+	private static void go(int cnt) {
 		if (cnt == N-1) {
 			int sum = num[0];
 			for (int i = 1; i < num.length; i++) {
@@ -71,7 +71,7 @@ public class Main_14888_연산자끼워넣기 {
 			if (visited[i]) continue;
 			visited[i] = true;
 			selected[cnt] = sign[i];
-			go(0, cnt + 1);
+			go(cnt + 1);
 			visited[i] = false;
 		}
 		

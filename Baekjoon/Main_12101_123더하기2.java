@@ -19,10 +19,10 @@ public class Main_12101_123더하기2 {
 		K = Integer.parseInt(st.nextToken());
 		selected = new ArrayList<Integer>();
 		
-		if (!go(0, 0)) System.out.println("-1");;
+		if (!go(0)) System.out.println("-1");;
 	} // end of main
 
-	private static boolean go(int cnt, int sum) {
+	private static boolean go(int sum) {
 		if (sum == N && ++ansCnt == K) {
 			for (int i = 0; i < selected.size(); i++) {
 				if (i == selected.size() - 1) System.out.print(selected.get(i));
@@ -34,7 +34,7 @@ public class Main_12101_123더하기2 {
 		for (int i = 1; i <= 3; i++) {
 			if (sum + i > N) break;
 			selected.add(i);
-			if (go(cnt+1, sum+i)) return true;
+			if (go(sum+i)) return true;
 			selected.remove(selected.size()-1);
 		}
 		
